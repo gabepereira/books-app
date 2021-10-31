@@ -1,6 +1,5 @@
-// jest.config.js
-
 module.exports = {
+  testEnvironment: 'jsdom',
   collectCoverageFrom: [
     'src/**/*.ts(x)?',
     '!src/pages/**/*.tsx',
@@ -8,5 +7,5 @@ module.exports = {
   ],
   modulePaths: ['<rootDir>/src/'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
 };
