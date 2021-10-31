@@ -1,8 +1,24 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import React from 'react';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from 'styles/global';
+import { theme } from 'styles/theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }: AppProps) => (
+  <>
+    <Head>
+      <title>ioasys Books</title>
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+      <link rel="apple-touch-icon" href="/images/favicon.ico" />
+      <meta name="description" content="ioasys Books" />
+    </Head>
 
-export default MyApp
+    <GlobalStyles />
+    <ThemeProvider theme={theme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  </>
+);
+
+export default App;
