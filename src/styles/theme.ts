@@ -4,7 +4,7 @@ const theme: DefaultTheme = {
   colors: {
     // Business colors
     primaryDarkest: '#0F1633FF',
-    primaryDark: '#16204BFF',
+    primaryDark: '#AB2680',
     primary: '#273983FF',
     primaryLight: '#4961C8FF',
     primaryLightest: '#CCD3F5FF',

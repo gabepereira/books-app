@@ -25,6 +25,7 @@ export const FormHeader = styled.div`
   h3 {
     margin-left: 16px;
     font-family: 'Heebo';
+    font-weight: 200;
   }
 `;
 

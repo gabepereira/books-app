@@ -4,11 +4,13 @@ export interface AuthBody {
 }
 
 export interface AuthResponse {
-  birthdate: string;
-  email: string;
-  gender: 'M' | 'F';
-  id: string;
-  name: string;
+  data: {
+    birthdate: string;
+    email: string;
+    gender: 'M' | 'F';
+    id: string;
+    name: string;
+  };
 }
 
 export interface AuthCredentials {

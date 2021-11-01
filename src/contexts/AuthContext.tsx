@@ -2,12 +2,15 @@ import React from 'react';
 import { AuthResponse, AuthCredentials } from 'models/Auth';
 
 interface AuthState {
-  credentials?: AuthCredentials | null;
+  credentials: AuthCredentials;
   user?: AuthResponse | null;
 }
 
 const initialState: AuthState = {
-  credentials: null,
+  credentials: {
+    authorization: '',
+    refreshToken: '',
+  },
   user: null,
 };
 
