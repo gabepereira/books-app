@@ -1,15 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Container, Typography } from '@material-ui/core';
+import LoginService from 'services/LoginService';
+import { AuthContext } from 'contexts/AuthContext';
 import Input from 'components/ui/Input';
 import * as S from './styles';
+import { AuthBody } from 'models/Auth';
 
 const LoginLayout = () => {
+  const { setState } = useContext(AuthContext);
+  const { replace } = useRouter();
   const { register, handleSubmit } = useForm();
 
-  const submit = async (data: {}) => {
-    console.log(data);
+  const submit = async (values: AuthBody) => {
+    try {
+      const res = await LoginService.login(values);
+
+      const {
+        data,
+        headers: { authorization, 'refresh-token': refreshToken },
+      } = res;
+
+      setState({ user: data, credentials: { authorization, refreshToken } });
+
+      replace('/home');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

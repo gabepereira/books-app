@@ -2,6 +2,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
+import { AuthProvider } from 'contexts/AuthContext';
 import GlobalStyles from 'styles/global';
 import { theme } from 'styles/theme';
 
@@ -16,7 +17,9 @@ const App = ({ Component, pageProps }: AppProps) => (
 
     <GlobalStyles />
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </ThemeProvider>
   </>
 );
