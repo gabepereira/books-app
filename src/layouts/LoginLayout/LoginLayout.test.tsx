@@ -1,6 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import LoginLayout from './LoginLayout';
 
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      replace: () => null,
+    };
+  },
+}));
+
 describe(LoginLayout, () => {
   const initialProps = {};
 

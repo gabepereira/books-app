@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { Container } from '@material-ui/core';
 import BooksService from 'services/BooksService';
 import { AuthContext } from 'contexts/AuthContext';
@@ -13,19 +14,28 @@ const initialParams = {
 };
 
 const HomeLayout = () => {
+  const { replace } = useRouter();
   const {
     state: {
-      user,
       credentials: { authorization },
     },
+    setState,
   } = useContext(AuthContext);
-  const [params, setParams] = useState(initialParams);
+  const [params] = useState(initialParams);
   const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     const initialize = () => {
       if (!authorization) {
-        console.log('no credentials found');
+        setState({
+          credentials: {
+            authorization: '',
+            refreshToken: '',
+          },
+          user: null,
+        });
+
+        replace('/');
         return;
       }
 
@@ -47,7 +57,7 @@ const HomeLayout = () => {
     };
 
     initialize();
-  }, [params, authorization]);
+  }, [params, authorization, replace, setState]);
 
   return (
     <S.Background>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
+  cursor: pointer;
   display: flex;
   min-width: 250px;
   max-width: 300px;
